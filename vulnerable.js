@@ -36,7 +36,8 @@ app.get('/search', (req, res) => {
 // 🚨 【脆弱性4】危険な`eval`の使用（Remote Code Execution）
 app.get('/eval', (req, res) => {
     let code = req.query.code;
-    res.send(`Result: ${eval(code)}`);  // ❌ ユーザー入力を直接`eval`に渡すのは危険
+    // ユーザー入力をコードとして実行せず、そのままレスポンスとして返す
+    res.send(`Result: ${code}`);
 });
 
 // 🚨 【脆弱性5】HTTPのみで送信されるパスワード（安全でない通信）
